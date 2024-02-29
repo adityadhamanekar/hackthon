@@ -25,7 +25,7 @@
         </div>
         <!-- end top -->
         <div class="sidebar">
-          <a href="#" class="active">
+          <a href="{%url 'dashboard'%}" class="active">
             <span class="material-symbols-sharp">grid_view </span>
             <h3>dashboard</h3>
           </a>
@@ -33,9 +33,13 @@
             <span class="material-symbols-sharp">home </span>
             <h3>Home</h3>
           </a>
-          <a href="#">
-            <span class="material-symbols-sharp">insights </span>
+          <a href="{%url 'analytics'%}" >
+            <span class="material-symbols-sharp">table </span>
             <h3>Analytics</h3>
+          </a>
+          <a href="{%url 'charts'%}" >
+            <span class="material-symbols-sharp">insights</span>
+            <h3>charts</h3>
           </a>
 
           <a href="{%url 'logout'%}">
@@ -55,18 +59,25 @@
       <main>
         <h1>dashboard</h1>
 
-        <div class="date">
-          <input type="date" />
-        </div>
+        
 
         <div class="insights">
           <!-- start seling -->
           <div class="sales">
-            <span class="material-symbols-sharp">trending_up</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span class="material-symbols-sharp">trending_up</span>
+              <h3 style="margin-left: 1rem">{{snake.gamename}}</h3>
+            </div>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total Score</h3>
+                <h1>{{snake.totalscore}}</h1>
               </div>
               <div class="progress">
                 <svg>
@@ -75,16 +86,25 @@
                 <div class="number"><p>80%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>{{snake.date}}</small>
           </div>
           <!-- end seling -->
           <!-- start expenses -->
           <div class="expenses">
-            <span class="material-symbols-sharp">local_mall</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span class="material-symbols-sharp">local_mall</span>
+              <h3 style="margin-left: 1rem">{{hangman.gamename}}</h3>
+            </div>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total score</h3>
+                <h1>{{hangman.totalscore}}</h1>
               </div>
               <div class="progress">
                 <svg>
@@ -93,16 +113,25 @@
                 <div class="number"><p>80%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>{{hangman.date}}</small>
           </div>
           <!-- end seling -->
           <!-- start seling -->
           <div class="income">
-            <span class="material-symbols-sharp">stacked_line_chart</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span class="material-symbols-sharp">stacked_line_chart</span>
+              <h3 style="margin-left: 1rem">{{typefast.gamename}}</h3>
+            </div>
             <div class="middle">
               <div class="left">
-                <h3>Total Sales</h3>
-                <h1>$25,024</h1>
+                <h3>Total score</h3>
+                <h1>{{typefast.totalscore}}</h1>
               </div>
               <div class="progress">
                 <svg>
@@ -111,54 +140,36 @@
                 <div class="number"><p>80%</p></div>
               </div>
             </div>
-            <small>Last 24 Hours</small>
+            <small>{{typefast.date}}</small>
           </div>
           <!-- end seling -->
         </div>
         <!-- end insights -->
         <div class="recent_order">
-          <h2>Recent Orders</h2>
+          <h2>Recent Data</h2>
           <table>
             <thead>
               <tr>
-                <th>Product Name</th>
-                <th>Product Number</th>
-                <th>Payments</th>
-                <th>Status</th>
+                <th>Game name</th>
+                <th>Score</th>
+                <th>highscore</th>
+                <th>Total score</th>
+                <th>date</th>
               </tr>
             </thead>
             <tbody>
+              {% for record in recent_record %}
               <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
+                <td>{{record.gamename}}</td>
+                <td>{{record.score}}</td>
+                <td>{{record.highscore}}</td>
+                <td class="warning">{{record.totalscore}}</td>
+                <td class="primary">{{record.date}}</td>
               </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
-              <tr>
-                <td>Mini USB</td>
-                <td>4563</td>
-                <td>Due</td>
-                <td class="warning">Pending</td>
-                <td class="primary">Details</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
-          <a href="#">Show All</a>
+          <a href="{%url 'analytics'%}">Show All</a>
         </div>
       </main>
       <!------------------
@@ -184,13 +195,11 @@
               <p>Admin</p>
               <small class="text-muted"></small>
             </div>
-            <div class="profile-photo">
-              <img src="{%static 'dashboard/images/profile-1.jpg'%}" alt="" />
-            </div>
           </div>
         </div>
 
-        {% comment %} <div class="recent_updates">
+        {% comment %}
+        <div class="recent_updates">
           <h2>Recent Update</h2>
           <div class="updates">
             <div class="update">
@@ -268,7 +277,8 @@
           <div>
             <span class="material-symbols-sharp">add</span>
           </div>
-        </div> {% endcomment %}
+        </div>
+        {% endcomment %}
       </div>
     </div>
 
