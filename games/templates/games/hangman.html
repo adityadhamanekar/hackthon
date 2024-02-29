@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="CodePel" />
+    <title>JavaScript Hangman game Example</title>
+    {% load static %}
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{%static 'games/css/hangman.css'%}" />
+    <!-- Demo CSS (No need to include it into your project) -->
+    <link rel="stylesheet" href="{%static 'games/css/demo.css'%}" />
+  </head>
+  <body>
+    <header class="cd__intro">
+      <h1>JavaScript Hangman game Example</h1>
+      <p>JavaScript Hangman game</p>
+      <div class="cd__action">
+        {% comment %}
+        <a
+          href="https://www.codepel.com/html5-games/simple-hangman-game-javascript"
+          title="Back to download and tutorial page"
+          class="cd__btn back"
+          >Back to Tutorial</a
+        >
+        {% endcomment %}
+      </div>
+    </header>
+    <!--$%adsense%$-->
+    <main class="cd__main">
+      <!-- Start DEMO HTML (Use the following code into your project)-->
+      <div class="wrapper">
+        <h1>Hangman</h1>
+        <h2>Vanilla JavaScript Hangman Game</h2>
+        <p>
+          Use the alphabet below to guess the word, or click hint to get a clue.
+        </p>
+      </div>
+      <div class="wrapper">
+        <div id="buttons"></div>
+        <p id="catagoryName"></p>
+        <div id="hold"></div>
+        <p id="mylives"></p>
+        <p id="clue">Clue -</p>
+        <canvas id="stickman"
+          >This Text will show if the Browser does NOT support HTML5 Canvas
+          tag</canvas
+        >
+        <div class="container">
+          <button id="hint">Hint</button>
+          <button id="reset">Play again</button>
+        </div>
+      </div>
+      <!-- END EDMO HTML (Happy Coding!)-->
+    </main>
+    <footer class="cd__credit">
+      jain college of engineering
+      <a
+        title="Free web design code & scripts"
+        href="https://www.codepel.com?source=demo-page"
+        target="_blank"
+      ></a>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="{%static 'games/js/hangman.js'%}"></script>
+    <!--$%analytics%$-->
+  </body>
+</html>
