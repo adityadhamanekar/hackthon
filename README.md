@@ -2,4 +2,4 @@
 
 to run this project 
 pip install django
-python manage.py 
+python manage.py runserver
