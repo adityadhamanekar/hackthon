@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'games/css/shooter.css'%}" />
+    <link
+      rel="shortcut icon"
+      href="{%static 'games/graphics/ship.png'%}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <title>Space Shooter</title>
+
+    <script defer src="{%static 'games/js/shooter.js'%}"></script>
+  </head>
+
+  <body>
+    <a
+      href="{%url 'home'%}"
+      style="
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+        color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        z-index: 100000;
+      "
+    >
+      <span class="material-symbols-sharp">home </span>
+      <h3 style="margin-left: 0.5rem">Home</h3>
+    </a>
+    <main class="container">
+      <div class="game" id="gameScreen">
+        <p class="question__area">hello world</p>
+        <div class="ship" id="ship"></div>
+
+        <div class="score">SCORE: 0</div>
+
+        <div class="message">
+          <div class="gameover">gameover</div>
+          <a href="#" class="restart">restart</a>
+        </div>
+
+        <p class="copyright">&copy; Copyright 2024 by Aditya Dhamanekar.</p>
+      </div>
+    </main>
+    <form
+      action="{%url 'shootergame'%}"
+      method="POST"
+      id="gameOverForm"
+      style="position: fixed; top: 0; left: 0; opacity: 0"
+    >
+      {% csrf_token %}
+      <input type="number" id="score" name="score" />
+      <label for="score">score</label>
+
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 // Game Constants & Variables
 let inputDir = { x: 0, y: 0 };
-// const foodSound = new Audio("/static/games/music/food.mp3");
-// const gameOverSound = new Audio("/static/games/music/gameover.mp3");
-// const moveSound = new Audio("/static/games/music/move.mp3");
-// const musicSound = new Audio("/static/games/music/music.mp3");
+const foodSound = new Audio("/static/games/music/food.mp3");
+const gameOverSound = new Audio("/static/games/music/gameover.mp3");
+const moveSound = new Audio("/static/games/music/move.mp3");
+const musicSound = new Audio("/static/games/music/music.mp3");
 let speed = 5;
 let score = 0;
 let lastPaintTime = 0;
@@ -47,7 +47,7 @@ wrongAns = { x: 10, y: 4 };
 // Game Functions
 function main(ctime) {
   window.requestAnimationFrame(main);
-  // console.log(ctime)
+  
   if ((ctime - lastPaintTime) / 1000 < 1 / speed) {
     return;
   }
@@ -82,19 +82,16 @@ function isCollide(snake, wrongAns) {
 function gameEngine() {
   // Part 1: Updating the snake array & Food
   if (isCollide(snakeArr, wrongAns)) {
-    saveScore(score, hiscore);
-    // gameOverSound.play();
-    // musicSound.pause();
+    saveScore(score, localStorage.getItem("hiscore"));
     inputDir = { x: 0, y: 0 };
     alert("Game Over. Press any key to play again!");
     snakeArr = [{ x: 13, y: 15 }];
-    // musicSound.play();
     score = 0;
   }
 
   // If you have eaten the food, increment the score and regenerate the food
   if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
-    // foodSound.play();
+    foodSound.play();
     score += 1;
     if (score > hiscoreval) {
       hiscoreval = score;
@@ -192,7 +189,7 @@ if (hiscore === null) {
 window.requestAnimationFrame(main);
 window.addEventListener("keydown", e => {
   inputDir = { x: 0, y: 1 }; // Start the game
-  //   moveSound.play();
+    moveSound.play();
   switch (e.key) {
     case "ArrowUp":
       inputDir.x = 0;
@@ -219,44 +216,7 @@ window.addEventListener("keydown", e => {
 });
 
 function saveScore(score, highscore) {
-  fetch("http://127.0.0.1:8000/games/snakegame", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": getCookie("csrftoken"), // Include CSRF token
-    },
-    body: JSON.stringify({
-      score: score,
-      highscore: highscore,
-    }),
-  })
-    .then(response => {
-      if (response.ok) {
-        // Optionally handle success response
-        console.log("Score saved successfully");
-      } else {
-        // Handle error response
-        console.error("Failed to save score");
-      }
-    })
-    .catch(error => {
-      // Handle network errors
-      console.error("Network error:", error);
-    });
-}
-
-// Function to get CSRF token from cookies
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
+  document.getElementById("score").value = score;
+ 
+  document.getElementById("gameOverForm").submit();
 }

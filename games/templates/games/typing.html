@@ -5,11 +5,34 @@
     {% load static %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <title>Speed Typing Game</title>
     <link rel="stylesheet" href="{%static 'games/css/typing.css'%}" />
     <script src="{%static 'games/js/typing.js'%}" defer></script>
   </head>
   <body>
+    <a
+      href="{%url 'home'%}"
+      style="
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+        color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+      "
+    >
+      <span class="material-symbols-sharp">home </span>
+      <h3 style="margin-left: 0.5rem">Home</h3>
+    </a>
     <div class="wrapper">
       <input type="text" class="input-field" />
       <div class="content-box">

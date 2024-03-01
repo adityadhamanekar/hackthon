@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from games.models import SnakeModel, hangmamModel, typefastModel
+from games.models import SnakeModel, hangmamModel, typefastModel,ShooterGameModel
 
 # Create your views here.
 @login_required
@@ -10,13 +10,15 @@ def dashboard(request):
     snakeData = SnakeModel.objects.filter(player=request.user.id).first()
     hangmanData = hangmamModel.objects.filter(player=request.user.id).first()
     typefastData = typefastModel.objects.filter(player=request.user.id).first()
+    shooterData = ShooterGameModel.objects.filter(player=request.user.id).first()
     
     
     snakerecord = SnakeModel.objects.filter(player=request.user.id).order_by('-date')[:5]
     hangmanrecord = hangmamModel.objects.filter(player=request.user.id).order_by('-date')[:5]
     typefastrecord = typefastModel.objects.filter(player=request.user.id).order_by('-date')[:5]
+    shooterrecord =  ShooterGameModel.objects.filter(player=request.user.id).order_by('-date')[:5]
 
-    all_records = list(snakerecord) + list(hangmanrecord) + list(typefastrecord)
+    all_records = list(snakerecord) + list(hangmanrecord) + list(typefastrecord) + list(shooterrecord)
     
     
     all_records.sort(key=lambda x: x.date, reverse=True)
@@ -27,6 +29,7 @@ def dashboard(request):
         "snake": snakeData,
         'hangman':hangmanData,
         'typefast':typefastData,
+        'shooter': shooterData,
         "recent_record": recent_five_records
     }
 
@@ -37,8 +40,9 @@ def analytics(request):
     snakerecord = SnakeModel.objects.filter(player=request.user.id).order_by('-date')
     hangmanrecord = hangmamModel.objects.filter(player=request.user.id).order_by('-date')
     typefastrecord = typefastModel.objects.filter(player=request.user.id).order_by('-date')
+    shooterrecord =  ShooterGameModel.objects.filter(player=request.user.id).order_by('-date')
 
-    all_records = list(snakerecord) + list(hangmanrecord) + list(typefastrecord)
+    all_records = list(snakerecord) + list(hangmanrecord) + list(typefastrecord)+ list(shooterrecord)
     
     
     all_records.sort(key=lambda x: x.date, reverse=True)

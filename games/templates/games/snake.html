@@ -7,16 +7,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SnakeMania - Ek Gaming Katha</title>
     <link rel="stylesheet" href="{%static 'games/css/snake.css'%}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
   </head>
   <body>
     <div class="body">
+      {% for message in messges %}
+      <div
+        class="alert alert-{{message.tags}} alert-dismissible fade show"
+        role="alert"
+        style="position: fixed; left: 2rem; top: 50vh; z-index: 100"
+      >
+        <strong>Message</strong> {{message}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %}
+      <a
+        href="{%url 'home'%}"
+        style="
+          position: fixed;
+          top: 2rem;
+          left: 2rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #eee;
+          color: black;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+        "
+      >
+        <span class="material-symbols-sharp">home </span>
+        <h3 style="margin-left: 0.5rem">Home</h3>
+      </a>
       <div class="questions">hello world</div>
       <div id="scoreBox">Score: 0</div>
       <div id="hiscoreBox">HiScore: 0</div>
-      
+
       <div id="board"><div class="questions">hello world</div></div>
     </div>
-    
+
+    <form
+      action="{%url 'snakegame'%}"
+      method="POST"
+      id="gameOverForm"
+      style="position: fixed; top: 0; left: 0; opacity: 0"
+    >
+      {% csrf_token %}
+      <input type="number" id="score" name="score" />
+      <label for="score">score</label>
+
+      <input type="number" id="highscore" name="highscore" />
+      <label for="score">highscore</label>
+
+      <button type="submit">submit</button>
+    </form>
   </body>
+  <script></script>
   <script src="{%static 'games/js/snake.js'%}"></script>
 </html>

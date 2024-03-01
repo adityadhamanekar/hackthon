@@ -5,5 +5,6 @@ urlpatterns = [
     path('hangman', views.hangman, name= 'hangman' ),
     path('snakegame', views.snakeGame, name= 'snakegame'),
     path('typefast', views.typefast, name= 'typefast'),
-    path('timepass', views.timepass, name = 'timepass')
+    path('timepass', views.timepass, name = 'timepass'),
+    path('shootergame', views.shooterGame, name= 'shootergame')
 ]

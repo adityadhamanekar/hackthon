@@ -9,9 +9,32 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="{%static 'games/css/hangman.css'%}" />
     <!-- Demo CSS (No need to include it into your project) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <link rel="stylesheet" href="{%static 'games/css/demo.css'%}" />
   </head>
   <body>
+     <a
+        href="{%url 'home'%}"
+        style="
+          position: fixed;
+          top: 2rem;
+          left: 2rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #eee;
+          color: black;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+        "
+      >
+        <span class="material-symbols-sharp">home </span>
+        <h3 style="margin-left: 0.5rem">Home</h3>
+      </a>
     <header class="cd__intro">
       <h1>JavaScript Hangman game Example</h1>
       <p>JavaScript Hangman game</p>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>analytics</title>
+    <title>charts</title>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -36,7 +36,7 @@
             <span class="material-symbols-sharp">home </span>
             <h3>Home</h3>
           </a>
-          <a href="{%url 'analytics'%}" >
+          <a href="{%url 'analytics'%}">
             <span class="material-symbols-sharp">table </span>
             <h3>Analytics</h3>
           </a>
@@ -88,8 +88,7 @@
     </div>
 
     <script>
-      // Get the canvas element
-      var ctx = document.getElementById('snakeScoreChart').getContext('2d');
+        var ctx = document.getElementById('snakeScoreChart').getContext('2d');
 
       // Define the data for the chart using the data passed from Django
       var labels = {{ labels|safe }};
@@ -97,14 +96,14 @@
 
       // Create the chart
       var myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'bar', // Set chart type to 'bar' for a bar chart
           data: {
               labels: labels,
               datasets: [{
                   label: 'Snake Game Scores Trend',
                   data: data,
-                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                  borderColor: 'rgba(255, 99, 132, 1)',
+                  backgroundColor: 'rgba(255, 99, 132, 0.2)', // Background color for bars
+                  borderColor: 'rgba(255, 99, 132, 1)', // Border color for bars
                   borderWidth: 1
               }]
           },
@@ -120,8 +119,6 @@
       });
     </script>
 
-    
     <script src="{%static 'dashboard/js/dashboard.js'%}"></script>
-   
   </body>
 </html>

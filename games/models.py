@@ -33,3 +33,14 @@ class typefastModel(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 
+
+class ShooterGameModel(models.Model):
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
+    gamename = models.CharField(default= 'Astroid shooter', max_length= 15)
+    score = models.IntegerField()
+    highscore = models.IntegerField()
+    totalscore= models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True)
+
+
+
