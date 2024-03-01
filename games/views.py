@@ -34,7 +34,7 @@ def snakeGame(request):
             return render(request, 'games/snake.html')
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
-    messages.success(request, 'record stored successfully')  
+    
     return render(request, 'games/snake.html')
 
 @login_required

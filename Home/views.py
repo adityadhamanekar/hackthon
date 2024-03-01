@@ -7,7 +7,7 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    messages.success(request, 'hello world')
+    
     return render(request, 'Home/index.html')
 
 
